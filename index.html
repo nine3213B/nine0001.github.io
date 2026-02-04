@@ -78,15 +78,20 @@
         }
                 /* --- 🆕 新增的文字工具 --- */
 
-        /* 1. 小分類標題 (Subtitle) */
-        /* 用途：用於區分段落內的細項，例如「手機規格：」、「開發工具：」 */
+        /* 1. 小分類標題 (Subtitle) - 已修正間距問題 */
         .sub-title {
-            color: #ffffff; /* 改成亮白色，與內文灰區隔 */
-            font-size: 1.1em; /* 字體稍微大一點點 */
-            font-weight: bold; /* 加粗 */
-            margin-top: 8px; /* 上方多留點空隙，讓段落分明 */
-            margin-bottom: 2px; /* 下方貼近內容 */
-            display: block; /* 讓它自己佔一行 */
+            color: #ffffff; 
+            font-size: 1.1em; 
+            font-weight: bold; 
+            
+            /* 🔴 關鍵修改開始：這三行能解決間距過大的問題 */
+            display: inline-block; /* 騙過瀏覽器，讓它不拆散 P 標籤 */
+            width: 100%;           /* 讓它依然像標題一樣佔滿整行 */
+            line-height: 1.2;      /* 縮小標題自己的行高 */
+            /* 🔴 關鍵修改結束 */
+
+            margin-top: 10px; /* 上方距離 (覺得太擠可改成 20px) */
+            margin-bottom: 2px; /* 下方距離 (設小一點，緊貼內容) */
         }
 
         /* 2. 重點變色 (Highlight) */
@@ -156,9 +161,7 @@
 
         <div class="card">
             <h2>test</h2>
-            <p>
-                test
-            </p>
+            <br>teat
         </div>
         <p style="text-align: center; font-size: 0.8em; color: #666; margin-top: 40px;">
             Designed by Me
