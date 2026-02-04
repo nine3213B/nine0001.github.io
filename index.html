@@ -1,115 +1,80 @@
+<!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>我的個人首頁</title>
     <style>
-        /* --- CSS 設定區域 (控制外觀) --- */
-
-        /* 1. 全域設定：讓所有元素的邊距歸零，比較好排版 */
+        /* --- 全域設定 --- */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        /* 2. 背景與文字基礎設定 */
         body {
-            /* 【關鍵】這裡設定深灰色背景 */
-            background-color: #1a1a1a; 
-            /* 設定主要文字顏色為淺灰，對比度才夠 */
+            /* 背景顏色：深灰色 */
+            background-color: #1a1a1a;
+            /* 文字顏色：淺灰 */
             color: #e0e0e0;
-            /* 使用無襯線字體，看起來比較乾淨現代 */
             font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            line-height: 1.6;
+            line-height: 1.8; /* 增加行距，讓純文字閱讀更舒適 */
             padding: 20px;
         }
 
-        /* 強制隱藏 GitHub 可能自動產生的頂部導覽列 */
+        /* 強制隱藏 GitHub 預設標頭 */
         header, .header, #header { display: none !important; }
 
-        /* 3. 主要容器：把所有內容包在中間，不要太寬 */
+        /* --- 版面容器 --- */
         .container {
-            max-width: 800px; /* 最大寬度 800px */
-            margin: 50px auto; /* 上下邊距 50px，左右自動置中 */
+            max-width: 700px; /* 限制寬度，閱讀體驗最佳 */
+            margin: 40px auto;
         }
 
-        /* 4. 卡片樣式：讓內容區塊看起來像浮起來的卡片 */
+        /* --- 卡片樣式 (R角欄位) --- */
         .card {
-            background-color: #2d2d2d; /* 比背景稍亮的深灰色 */
+            background-color: #2d2d2d; /* 卡片背景色 */
             padding: 30px;
-            border-radius: 15px; /* 圓角 */
-            box-shadow: 0 10px 25px rgba(0,0,0,0.5); /* 陰影效果 */
-            margin-bottom: 30px; /* 卡片之間的間距 */
+            border-radius: 16px; /* R角圓角程度 */
+            box-shadow: 0 4px 20px rgba(0,0,0,0.4); /* 陰影讓卡片浮起 */
+            margin-bottom: 25px; /* 卡片之間的距離 */
+            border-left: 5px solid #00d4ff; /* 左側亮藍色裝飾線 */
         }
 
-        /* 5. 標題顏色：用一個亮色系來點綴 (例如霓虹藍) */
-        h1, h2 {
-            color: #00d4ff;
+        /* --- 標題與文字樣式 --- */
+        h2 {
+            color: #00d4ff; /* 標題顏色 (可改成你喜歡的顏色) */
             margin-bottom: 15px;
+            font-size: 1.5em;
         }
 
-        /* 6. 圖片樣式：確保圖片會自動縮放，不會破版 */
-        .profile-image {
-            width: 100%; /* 寬度佔滿卡片 */
-            max-height: 400px; /* 限制最大高度，避免圖片太長 */
-            object-fit: cover; /* 保持圖片比例裁切 */
-            border-radius: 10px; /* 圖片也要圓角 */
-            margin-bottom: 20px;
-            border: 3px solid #333; /* 加個深色邊框更有質感 */
-        }
-
-        /* 7. 列表樣式 (用於硬體規格等) */
-        ul.specs {
-            list-style: none; /* 去掉預設的圓點 */
-            padding-left: 0;
-        }
-        ul.specs li {
+        p {
             margin-bottom: 10px;
-            padding-left: 20px;
-            border-left: 4px solid #00d4ff; /* 左側加一條亮線裝飾 */
-            background-color: rgba(255, 255, 255, 0.05); /* 微微亮的背景條 */
-            padding: 10px;
-            border-radius: 0 5px 5px 0;
         }
-        
-        /* 連結樣式 */
+
+        /* 超連結樣式 */
         a {
             color: #00d4ff;
             text-decoration: none;
+            font-weight: bold;
         }
         a:hover {
             text-decoration: underline;
+            color: #fff;
         }
-               /* --- 📱 手機版專用修正 (Mobile Responsive) --- */
+
+        /* --- 手機版優化 (針對 Pixel 9a / iPhone) --- */
         @media (max-width: 600px) {
-            
-            /* 1. 縮減手機版邊距：手機寸土寸金，不要留太多白邊 */
-            body {
-                padding: 10px; /* 從 20px 縮小到 10px */
-            }
-            
-            .container {
-                margin: 20px auto; /* 上下距離縮小 */
-                width: 100%; /* 強制佔滿寬度 */
-            }
-
-            .card {
-                padding: 20px; /* 卡片內部空間縮小，讓內容有更多位置 */
-            }
-
-            /* 2. 字體調整：避免標題在手機上太大而換行得很醜 */
-            h1 { font-size: 1.8em; }
-            h2 { font-size: 1.4em; }
+            body { padding: 15px; }
+            .container { margin-top: 20px; }
+            .card { padding: 20px; border-radius: 12px; }
+            h2 { font-size: 1.3em; }
         }
 
-        /* --- 🛡️ 防止版面爆開的關鍵 (所有裝置都適用) --- */
-        .card, p, li, a {
-            /* 強制長單字或長網址換行 */
-            word-wrap: break-word; 
+        /* 防止長文字或網址撐破版面 */
+        .card, p, a {
+            word-wrap: break-word;
             overflow-wrap: break-word;
-            /* 針對很極端的長字串 (如網址) 強制切斷 */
-            word-break: break-word; 
         }
     </style>
 </head>
@@ -118,30 +83,37 @@
     <div class="container">
 
         <div class="card">
-            <h1>歡迎來到我的領域</h1>
-            <p>你好！這是一個熱愛 FPS 與節奏遊戲的玩家空間。這裡沒有廣告，只有我對遊戲和硬體的熱情。</p>
-            <br>
-            
-            <img class="profile-image" src="https://via.placeholder.com/800x400/444444/00d4ff?text=Upload+Your+Image+Here" alt="我的封面圖">
-            
-            <p>目前正在鑽研 Python 開發，目標是寫出更強大的 Discord 機器人。</p>
+            <h2>自訂標題 1 (例如：關於我)</h2>
+            <p>
+                這裡輸入你的自訂內容。例如：我是某某大學的學生，熱愛研究 PC 硬體與 Python 開發。
+            </p>
+            <p>
+                這裡可以寫第二段文字，或是放一句你的座右銘。
+            </p>
         </div>
 
         <div class="card">
-            <h2>⚙️ 裝備與戰績</h2>
-            <p>工欲善其事，必先利其器。以下是我的目前配置：</p>
-            <br>
-            
-            <ul class="specs">
-                <li><strong>行動裝置：</strong>iPhone 17 Pro / Pixel 9a</li>
-                <li><strong>PC 散熱：</strong>Noctua NH-D9L (貓頭鷹信仰!)</li>
-                <li><strong>主力遊戲：</strong>Apex Legends, Valorant, 以及各類音樂遊戲</li>
-                <li><strong>開發工具：</strong>VS Code, Python</li>
-            </ul>
+            <h2>自訂標題 2 (例如：硬體配置)</h2>
+            <p>
+                這裡輸入你的內容。例如：
+                <br>手機：iPhone 17 Pro / Pixel 9a
+                <br>電腦散熱：Noctua NH-D9L
+            </p>
         </div>
 
-        <p style="text-align: center; font-size: 0.9em; color: #888;">
-            © 2026 Designed by Me. Hosted on GitHub Pages.
+        <div class="card">
+            <h2>自訂標題 3 (例如：連結與專案)</h2>
+            <p>
+                這裡可以放你的連結：
+                <br>
+                🔗 <a href="https://github.com/你的帳號" target="_blank">前往我的 GitHub</a>
+                <br>
+                🎮 <a href="https://steamcommunity.com/" target="_blank">我的 Steam 頁面</a>
+            </p>
+        </div>
+
+        <p style="text-align: center; font-size: 0.8em; color: #666; margin-top: 40px;">
+            Designed by Me
         </p>
 
     </div>
