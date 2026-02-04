@@ -134,12 +134,6 @@
             height: 100%;
             object-fit: cover; /* 重要！這會讓長方形圖片自動裁切成正方形 */
         }
-
-        /* 4. 滑鼠移過去的特效 (懸停) */
-        .icon-btn:hover {
-            transform: scale(1.1); /* 稍微放大 */
-            border-color: #00d4ff; /* 邊框變亮藍色 */
-            box-shadow: 0 0 10px rgba(0, 212, 255, 0.5); /* 加一點發光效果 */
         }
 
         /* --- 形狀切換開關 --- */
@@ -152,6 +146,39 @@
         /* 想要方形(導圓角)就加這個 class */
         .square {
             border-radius: 12px; 
+        }
+        /* --- 🏷️ 圖示下方的文字標籤樣式 --- */
+
+        /* 1. 單個項目的容器：負責把圖示跟文字包在一起 */
+        .icon-wrapper {
+            display: flex;
+            flex-direction: column; /* 讓內容垂直排列 (圖在上，字在下) */
+            align-items: center; /* 水平置中 */
+            text-align: center;
+            width: 80px; /* 限制寬度，避免文字太長把旁邊擠開 */
+        }
+
+        /* 2. 文字標籤本體 */
+        .icon-label {
+            margin-top: 8px; /* 文字跟圖示的距離 */
+            font-size: 0.85em; /* 字體小一點，比較精緻 */
+            color: #aaaaaa; /* 淺灰色 */
+            font-weight: bold;
+            line-height: 1.2;
+            
+            /* 如果文字太長，自動換行 */
+            word-wrap: break-word; 
+        }
+
+        /* 3. 讓滑鼠移到「整個區域」時，文字也會變亮 */
+        .icon-wrapper:hover .icon-label {
+            color: #00d4ff; /* 跟你的主題色一樣的藍色 */
+        }
+        
+        /* 4. 讓滑鼠移到「整個區域」時，圖示也會有反應 */
+        .icon-wrapper:hover .icon-btn {
+            transform: scale(1.1);
+            border-color: #00d4ff;
         }
     </style>
 </head>
@@ -213,6 +240,35 @@
                 <a href="https://www.xbox.com/zh-TW/play/user/BarbedThyme3213" target="_blank" class="icon-btn circle" title="xbox">
                     <img src="xbox.png" alt="xbox">
                 </a>
+        </div>
+        <div class="card">
+            <h2>社群與連結</h2>
+            <p>點擊下方圖示前往我的個人頁面：</p>
+            
+            <div class="icon-row">
+
+                <div class="icon-wrapper">
+                    <a href="https://github.com/你的帳號" target="_blank" class="icon-btn circle">
+                        <img src="github-icon.png" alt="GitHub">
+                    </a>
+                    <span class="icon-label">GitHub</span>
+                </div>
+
+                <div class="icon-wrapper">
+                    <a href="https://steamcommunity.com/id/你的ID" target="_blank" class="icon-btn square">
+                        <img src="steam-icon.jpg" alt="Steam">
+                    </a>
+                    <span class="icon-label">Steam</span>
+                </div>
+
+                <div class="icon-wrapper">
+                    <a href="https://discord.com/" target="_blank" class="icon-btn circle">
+                        <img src="discord-icon.png" alt="Discord">
+                    </a>
+                    <span class="icon-label">Discord</span>
+                </div>
+                
+                </div>
         </div>
     </div>
 
